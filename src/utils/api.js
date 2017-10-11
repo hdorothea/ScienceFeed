@@ -1,4 +1,7 @@
 import fetch from 'isomorphic-fetch';
+import { rename } from './common';
+
+const pick = require('lodash.pick');
 
 export async function apiGet(url) {
   const res = await fetch(url);
@@ -7,9 +10,24 @@ export async function apiGet(url) {
 
 export async function getData(key, category, period, callback) {
   const url = `https://api.nytimes.com/svc/mostpopular/v2/mostviewed/${category}/${period}.json?api-key=${key}`;
-  let res = await apiGet(url);
-  if (callback) {
-    res = await callback(res);
+  const response = await apiGet(url);
+  if (!response.ok) {
+    throw new Error(response.statusText);
   }
-  return res;
+  let result = await response.json();
+  if (callback) {
+    result = callback(result);
+  }
+  return result;
+}
+export function transformResult(result, transformFunc) {
+  return result.map(element => transformFunc(element));
+}
+
+export function pickResult(result, picks) {
+  return transformResult(result, element => pick(element, picks));
+}
+
+export function renameResult(result, renameMapping) {
+  return transformResult(result, element => rename(element, renameMapping));
 }

@@ -1,5 +1,4 @@
-import { apiGet } from './api';
-import { getData } from './api';
+import { apiGet, getData, pickResult } from './api';
 
 const nock = require('nock');
 
@@ -17,16 +16,22 @@ describe('getData', () => {
   it('returns the desired data', async () => {
     const testCategory = 'Science';
     const testPeriod = 7;
-    const testCallback = async (response) => {
-      const result = await response.json();
-      return result.hello;
-    };
 
     nock(`https://api.nytimes.com/svc/mostpopular/v2/mostviewed/${testCategory}/${testPeriod}.json`)
       .get('')
-      .query(queryObject => queryObject.apiKey === 'fake')
+      .query({ 'api-key': 'fake' })
       .reply(200, { hello: 'world', bye: 'moon' });
-    const result = await getData('fake', testCategory, testPeriod, testCallback);
-    expect(result).toEqual('world');
+    const pickedResult = await getData('fake', testCategory, testPeriod, result => result.hello);
+    expect(pickedResult).toEqual('world');
+  });
+});
+
+describe('pickResponse', () => {
+  it('returns an array of picked objects', () => {
+    const pickedResult = pickResult(
+      [{ title: 'hello', abstract: 'world' }, { title: 'bye', abstract: 'mars' }],
+      ['title'],
+    );
+    expect(pickedResult).toEqual([{ title: 'hello' }, { title: 'bye' }]);
   });
 });
