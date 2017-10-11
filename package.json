@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "font-awesome": "^4.7.0",
+    "lodash.pick": "^4.4.0",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-fontawesome": "^1.6.1",
     "react-scripts": "1.0.14",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.2.1"
   },
   "scripts": {
@@ -18,11 +22,12 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@storybook/react": "^3.2.12",
     "eslint": "^4.8.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.4.0",
-    "@storybook/react": "^3.2.12"
+    "nock": "^9.0.22"
   }
 }
