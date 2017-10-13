@@ -2,8 +2,8 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import Feed from '../components/Feed';
-import { Img } from '../components/ImgFeed';
+import Feed from '../Feed';
+import { Img } from '../ImgFeed';
 
 export default storiesOf('Feed', module).add('with images and text', () => (
   <Feed width="100px">

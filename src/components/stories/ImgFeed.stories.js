@@ -2,7 +2,7 @@ import React from 'react';
 
 import { storiesOf } from '@storybook/react';
 
-import ImgFeed from '../components/ImgFeed';
+import ImgFeed from '../ImgFeed';
 
 export default storiesOf('ImgFeed', module).add('renders', () => (
   <ImgFeed
