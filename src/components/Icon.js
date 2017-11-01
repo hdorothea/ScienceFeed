@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// an Icon renders the icon path handed to it.
 export default function Icon(props) {
   const styles = {
     svg: {
@@ -19,7 +20,7 @@ export default function Icon(props) {
       height={`${props.size}px`}
       viewBox="0 0 1024 1024"
     >
-      {props.paths.map(path => <path style={styles.path} d={path} />)}
+      {props.paths.map(path => <path style={styles.path} d={path || ''} />)}
     </svg>
   );
 }
