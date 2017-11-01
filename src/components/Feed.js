@@ -33,7 +33,7 @@ export default function Feed(props) {
 Feed.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.array.isRequired,
 };
 
 Feed.defaultProps = {
