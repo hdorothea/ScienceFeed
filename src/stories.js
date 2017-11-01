@@ -6,3 +6,5 @@ import ImgFeedStories from './components/stories/ImgFeed.stories';
 import HorizontalBar from './components/stories/HorizontalBar.stories';
 // eslint-disable-next-line no-unused-vars
 import Icon from './components/stories/Icon.stories';
+// eslint-disable-next-line no-unused-vars
+import Thumbnail from './components/stories/Thumbnail.stories';
