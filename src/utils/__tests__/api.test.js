@@ -1,6 +1,6 @@
-import { apiGet, getData, pickResult } from './api';
+import nock from 'nock';
+import { apiGet, getData, pickResult } from '../api';
 
-const nock = require('nock');
 
 describe('apiGet', () => {
   it('fetches', async () => {

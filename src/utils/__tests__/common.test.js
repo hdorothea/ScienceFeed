@@ -1,4 +1,4 @@
-import { rename } from './common';
+import { rename } from '../common';
 
 
 describe('rename', () => {
