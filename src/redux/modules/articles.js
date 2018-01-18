@@ -62,6 +62,7 @@ export function fetchArticles(apiKey, category = 'Science', period = 7) {
 }
 
 export const getArticles = state => state.articles.data;
+export const areThereArticles = state => state.articles.data.length > 0;
 export const getSelectedArticle = state => state.articles.selectedArticle;
 
 export const getQueriedArticles = createSelector(

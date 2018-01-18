@@ -20,7 +20,7 @@ export default function reducer(state = initialState, action) {
 
 export function startFetch() {
   return {
-    type: FETCH_START,
+    type: FETCH_START
   };
 }
 
@@ -28,6 +28,10 @@ export function errFetch(err) {
   return {
     type: FETCH_ERROR,
     info: 'Error while fetching articles',
-    err,
+    err
   };
 }
+
+// selectors
+
+export const isFetching = state => state.fetch.isFetching;

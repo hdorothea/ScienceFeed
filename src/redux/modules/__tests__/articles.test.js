@@ -63,7 +63,7 @@ describe('fetchArticles async actions', () => {
     nock(`https://api.nytimes.com/svc/mostpopular/v2/mostviewed/${testCategory}/${testPeriod}.json`)
       .get('')
       .query({ 'api-key': 'fake' })
-      .reply(200, testArticles);
+      .reply(200, { results: testArticles });
 
     const expectedActions = [{ type: FETCH_START }, { type: RECEIVE_ARTICLES, data: testArticles }];
 
