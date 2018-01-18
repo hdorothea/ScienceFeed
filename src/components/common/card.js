@@ -8,7 +8,11 @@ const styles = {
     boxShadow: 'rgba(0, 0, 0, 0.13) 2px 2px 0px 0px',
     width: '90%',
     padding: '0.5em',
-    marginBottom: '1em'
+    marginBottom: '1em',
+    display: 'flex',
+    flexDirection: 'colum',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 };
 

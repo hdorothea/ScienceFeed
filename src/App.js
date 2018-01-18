@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import PopularView from './containers/popularView';
 import FilteredView from './containers/filteredView';
+import Info from './components/info';
 
 import Navigation from './components/navigation';
 import Header from './components/header';
@@ -31,6 +32,7 @@ class App extends Component {
         />
         <Switch>
           <Route path={this.searchPath} component={FilteredView} />
+          <Route path={this.infoPath} component={Info} />
           <Route path={this.homePath} component={PopularView} />
         </Switch>
       </div>
