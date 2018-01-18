@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
-import popularView from './containers/popularView';
-import filteredView from './containers/filteredView';
+import PopularView from './containers/popularView';
+import FilteredView from './containers/filteredView';
 
 import Navigation from './components/navigation';
 import Header from './components/header';
@@ -29,8 +29,10 @@ class App extends Component {
             { name: 'info', iconPath: info, path: this.infoPath }
           ]}
         />
-        <Route path={this.homePath} component={popularView} />
-        <Route path={this.searchPath} component={filteredView} />
+        <Switch>
+          <Route path={this.searchPath} component={FilteredView} />
+          <Route path={this.homePath} component={PopularView} />
+        </Switch>
       </div>
     );
   }
