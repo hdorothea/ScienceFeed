@@ -20,15 +20,13 @@ const defaultProps = {
   style: {}
 };
 
-const ArticleFeed = ({ articles, style: overwriteStyles }) => {
-  return (
-    <div style={{ ...styles.articleFeed, ...overwriteStyles }}>
-      {articles.map(({ title, abstract, headerImg }) => (
-        <ContentCard imgUrl={headerImg} mainText={abstract} headerText={title} />
-      ))}
-    </div>
-  );
-};
+const ArticleFeed = ({ articles, style: overwriteStyles }) => (
+  <div style={{ ...styles.articleFeed, ...overwriteStyles }}>
+    {articles.map(({ title, abstract, headerImg }) => (
+      <ContentCard imgUrl={headerImg} mainText={abstract} headerText={title} />
+    ))}
+  </div>
+);
 
 ArticleFeed.propTypes = propTypes;
 

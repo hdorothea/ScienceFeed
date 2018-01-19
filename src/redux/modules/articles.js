@@ -4,7 +4,6 @@ import { getData, pickResult, renameResult } from '../../utils/api';
 import { startFetch, errFetch } from './fetch';
 import { getQueryString } from './filter';
 
-
 export const RECEIVE_ARTICLES = 'science-feed/articles/RECEIVE';
 export const SELECT_ARTICLE = 'science-feed/articles/SELECT';
 
@@ -24,14 +23,14 @@ export default function reducer(state = initialState, action) {
 export function receiveArticles(data) {
   return {
     type: RECEIVE_ARTICLES,
-    data,
+    data
   };
 }
 
 export function selectArticle(article) {
   return {
     type: SELECT_ARTICLE,
-    article,
+    article
   };
 }
 
@@ -49,10 +48,10 @@ export function fetchArticles(apiKey, category = 'Science', period = 7) {
             'title',
             'abstract',
             'published_date',
-            'views',
+            'views'
           ]),
-          { published_date: 'publishedDate', views: 'viewRank' },
-        ),
+          { published_date: 'publishedDate', views: 'viewRank' }
+        )
       );
       dispatch(receiveArticles(data));
     } catch (err) {

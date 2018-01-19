@@ -11,7 +11,7 @@ const defaultProps = {};
 
 const Info = () => (
   <Card>
-    This is a hobby project! You can find the code on <a href="https://github.com/hdorothea/ScienceFeed">github</a>
+    <div>This is a hobby project! You can find the code on <a href="https://github.com/hdorothea/ScienceFeed">github</a></div>
   </Card>
 );
 
