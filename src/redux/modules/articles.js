@@ -68,5 +68,6 @@ export const getSelectedArticle = state => state.articles.selectedArticle;
 export const getQueriedArticles = createSelector(
   getArticles,
   getQueryString,
-  (articles, queryString) => articles.filter(article => article.title.includes(queryString)),
+  (articles, queryString) =>
+    articles.filter(article => article.title.toLowerCase().includes(queryString.toLowerCase()))
 );
