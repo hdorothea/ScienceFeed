@@ -21,7 +21,8 @@
     "prefer-arrow-callback": 0,
     "func-names": 0,
     "no-underscore-dangle": 0,
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "no-shadow": 0
   },
 
   "globals": {
