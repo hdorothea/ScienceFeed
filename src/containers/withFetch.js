@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchArticles } from '../redux/modules/articles';
+import { fetchArticles, areThereArticles } from '../redux/modules/articles';
+import { isFetching } from '../redux/modules/fetch';
 
 export default function WithFetch(WrappedComponent) {
   const propTypes = {
@@ -20,6 +21,8 @@ export default function WithFetch(WrappedComponent) {
   class Fetch extends Component {
     componentDidMount() {
       const { areThereArticles, isFetching } = this.props;
+      console.log(areThereArticles);
+      console.log(isFetching);
       if (!areThereArticles && !isFetching) {
         this.props.fetchArticles();
       }
@@ -34,8 +37,8 @@ export default function WithFetch(WrappedComponent) {
   Fetch.defaultProps = defaultProps;
 
   const mapStateToProps = state => ({
-    areThereArticles: state.areThereArticles,
-    isFetching: state.isFetching
+    areThereArticles: areThereArticles(state),
+    isFetching: isFetching(state)
   });
 
   const mapDispatchToProps = dispatch => ({
