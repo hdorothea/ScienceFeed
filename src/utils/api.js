@@ -1,8 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import { rename } from './common';
-
-const pick = require('lodash.pick');
-
 
 export async function getData(key, category, period, callback) {
   const url = `https://api.nytimes.com/svc/mostpopular/v2/mostviewed/${category}/${period}.json?api-key=${key}`;
@@ -16,14 +12,50 @@ export async function getData(key, category, period, callback) {
   }
   return result;
 }
-export function transformResult(result, transformFunc) {
-  return result.map(element => transformFunc(element));
+
+export function transformNYTMedia(media) {
+  for (const mediaItem of media) {
+    if (['image', 'img', 'picture'].includes(mediaItem.type)) {
+      const correctFormatImgs = mediaItem['media-metadata'].filter(
+        ({ format, height, width }) =>
+          format === 'mediumThreeByTwo440' || (height === 293 && width === 440)
+      );
+      if (correctFormatImgs[0]) {
+        return { caption: mediaItem.caption, url: correctFormatImgs[0].url };
+      }
+    }
+  }
+  return null;
 }
 
-export function pickResult(result, picks) {
-  return transformResult(result, element => pick(element, picks));
-}
-
-export function renameResult(result, renameMapping) {
-  return transformResult(result, element => rename(element, renameMapping));
+// parse the publishdate
+// TODO more generalized and more testable way to retrieve and transform the API responses
+export function transformNYTResult(result) {
+  return result.map(
+    ({
+      source,
+      adx_keywords,
+      url,
+      section,
+      byline,
+      title,
+      abstract,
+      published_date,
+      views,
+      media,
+      id
+    }) => ({
+      id,
+      img: media ? transformNYTMedia(media) : null,
+      url,
+      section,
+      byline,
+      title,
+      abstract,
+      source,
+      keywords: adx_keywords ? adx_keywords.split(';') : null,
+      publishedDate: new Date(published_date),
+      viewRank: views
+    })
+  );
 }

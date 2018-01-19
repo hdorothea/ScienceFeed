@@ -8,14 +8,14 @@ import {
   receiveArticles,
   SELECT_ARTICLE,
   RECEIVE_ARTICLES,
-  fetchArticles,
+  fetchArticles
 } from '../articles';
 import { FETCH_START, FETCH_ERROR } from '../fetch';
 
 describe('articles Reducer', () => {
   it('should handle SELECT_ARTICLE', () => {
     expect(articlesReducer({}, { type: SELECT_ARTICLE, article: { title: 'article1' } })).toEqual({
-      selectedArticle: { title: 'article1' },
+      selectedArticle: { title: 'article1' }
     });
   });
 });
@@ -25,7 +25,7 @@ describe('receiveArticles action', () => {
     const articles = [{ title: 'Article1' }, { title: 'Article2' }];
     const expectedAction = {
       type: RECEIVE_ARTICLES,
-      data: articles,
+      data: articles
     };
     expect(receiveArticles(articles)).toEqual(expectedAction);
   });
@@ -36,7 +36,7 @@ describe('selectArticles action', () => {
     const article = { title: 'Article1' };
     const expectedAction = {
       type: SELECT_ARTICLE,
-      article,
+      article
     };
     expect(selectArticle(article)).toEqual(expectedAction);
   });
@@ -58,17 +58,17 @@ describe('fetchArticles async actions', () => {
     nock.cleanAll();
   });
 
-  it('fcreates RECEIVE_ARTICLES and FETCH_START actions', async () => {
+  it('creates RECEIVE_ARTICLES and FETCH_START actions', async () => {
     const testArticles = [{ title: 'article1' }, { title: 'article2' }];
     nock(`https://api.nytimes.com/svc/mostpopular/v2/mostviewed/${testCategory}/${testPeriod}.json`)
       .get('')
       .query({ 'api-key': 'fake' })
       .reply(200, { results: testArticles });
 
-    const expectedActions = [{ type: FETCH_START }, { type: RECEIVE_ARTICLES, data: testArticles }];
+    const expectedActionTypes = [FETCH_START, RECEIVE_ARTICLES];
 
     await store.dispatch(fetchArticles('fake', testCategory, testPeriod));
-    expect(store.getActions()).toEqual(expectedActions);
+    expect(store.getActions().map(action => action.type)).toEqual(expectedActionTypes);
   });
 
   it('can create FETCH_ERROR action', async () => {
@@ -79,7 +79,7 @@ describe('fetchArticles async actions', () => {
     await store.dispatch(fetchArticles('fake', testCategory, testPeriod));
 
     expect(store.getActions().map(action => action.type)).toEqual(
-      expect.arrayContaining([FETCH_ERROR]),
+      expect.arrayContaining([FETCH_ERROR])
     );
   });
 });

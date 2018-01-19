@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { getData, pickResult, renameResult } from '../../utils/api';
+import { getData, transformNYTResult } from '../../utils/api';
 import { startFetch, errFetch } from './fetch';
 import { getQueryString } from './filter';
 
@@ -40,18 +40,7 @@ export function fetchArticles(apiKey, category = 'Science', period = 7) {
     let data;
     try {
       data = await getData(apiKey, category, period, result =>
-        renameResult(
-          pickResult(result, [
-            'url',
-            'section',
-            'byline',
-            'title',
-            'abstract',
-            'published_date',
-            'views'
-          ]),
-          { published_date: 'publishedDate', views: 'viewRank' }
-        )
+        transformNYTResult(result)
       );
       dispatch(receiveArticles(data));
     } catch (err) {

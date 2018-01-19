@@ -22,8 +22,8 @@ const defaultProps = {
 
 const ArticleFeed = ({ articles, style: overwriteStyles }) => (
   <div style={{ ...styles.articleFeed, ...overwriteStyles }}>
-    {articles.map(({ title, abstract, headerImg }) => (
-      <ContentCard imgUrl={headerImg} mainText={abstract} headerText={title} />
+    {articles.map(({ title, abstract, img, id }) => (
+      <ContentCard key={id} imgUrl={img.url} mainText={abstract} headerText={title} />
     ))}
   </div>
 );

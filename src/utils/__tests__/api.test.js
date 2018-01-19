@@ -1,5 +1,5 @@
 import nock from 'nock';
-import { getData, pickResult } from '../api';
+import { getData, transformNYTResult, transformNYTMedia } from '../api';
 
 describe('getData', () => {
   it('returns the desired data', async () => {
@@ -15,12 +15,35 @@ describe('getData', () => {
   });
 });
 
-describe('pickResponse', () => {
-  it('returns an array of picked objects', () => {
-    const pickedResult = pickResult(
-      [{ title: 'hello', abstract: 'world' }, { title: 'bye', abstract: 'mars' }],
-      ['title']
-    );
-    expect(pickedResult).toEqual([{ title: 'hello' }, { title: 'bye' }]);
+describe('transformNYTResult', () => {
+
+  it('sets the values to undefined/null and doesnt fail if value are not present in the result', () => {
+    const result = transformNYTResult([]);
+    expect(result.viewRank).toBeUndefined();
+  });
+
+  it('renames correctly', () => {
+    const result = transformNYTResult([{ views: 2 }, {}]);
+    expect(result[0].viewRank).toEqual(2);
+  });
+
+  it('returns the seperated keywords', () => {
+    const result = transformNYTResult([{ adx_keywords: 'hallo;lola;buh' }, {}]);
+    expect(result[0].keywords).toEqual(['hallo', 'lola', 'buh']);
+  });
+});
+
+describe('transformNYTMedia', () => {
+  it('should return the first items caption with type image with the correct size and that images url', () => {
+    const media = [
+      { type: 'video', caption: 'video caption', 'media-metadata': [{}, {}, { url: 'some url' }] },
+      {
+        type: 'image',
+        caption: 'image caption',
+        'media-metadata': [{}, {}, { format: 'mediumThreeByTwo440', url: 'win.com' }]
+      }
+    ];
+    const result = transformNYTMedia(media);
+    expect(result).toEqual({ caption: 'image caption', url: 'win.com' });
   });
 });
