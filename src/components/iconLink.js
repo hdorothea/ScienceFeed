@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Icon from './icon';
 
 const propTypes = {
-  path: PropTypes.string.isRequired,
+  path: PropTypes.array.isRequired,
   iconPath: PropTypes.string.isRequired
 };
 

@@ -14,7 +14,7 @@ const styles = {
 };
 
 const propTypes = {
-  options: PropTypes.object,
+  options: PropTypes.array,
   style: PropTypes.object,
 };
 
@@ -26,8 +26,8 @@ const defaultProps = {
 export function Navigation({ options, style: overwriteStyles }) {
   return (
     <div style={{ ...styles.navigation, ...overwriteStyles }}>
-      {options.map(({ path, iconPath }) => (
-        path ? <IconLink path={path} iconPath={iconPath} /> : <Icon paths={iconPath} />
+      {options.map(({ path, iconPath, name }) => (
+        path ? <IconLink key={name} path={path} iconPath={iconPath} /> : <Icon paths={iconPath} />
       ))}
     </div>
   );
