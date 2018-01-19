@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import StoryRouter from 'storybook-router';
 
 import Card from './components/common/card';
@@ -8,6 +9,7 @@ import ContentCard from './components/contentCard';
 import ArticleFeed from './components/articleFeed';
 import Icon from './components/icon';
 import Navigation from './components/navigation';
+import QueryInput from './components/queryInput';
 
 import { home, search, info } from './iconPaths';
 
@@ -66,3 +68,7 @@ storiesOf('Navigation', module)
       ]}
     />
   ));
+
+storiesOf('QueryInput', module).add('description', () => (
+  <QueryInput onSubmit={action('submitted')} />
+));

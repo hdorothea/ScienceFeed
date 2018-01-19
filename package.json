@@ -23,6 +23,7 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.9",
     "@storybook/react": "^3.2.12",
     "deep-freeze": "0.0.1",
     "eslint": "^4.8.0",
