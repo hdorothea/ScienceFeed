@@ -36,7 +36,7 @@ const ArticleFeed = ({ articles, style: overwriteStyles }) => (
         <ContentCard
           style={styles.item}
           key={id}
-          imgUrl={img.url}
+          imgUrl={img ? img.url : null}
           mainText={abstract}
           headerText={title}
         />
