@@ -20,7 +20,7 @@ const propTypes = {
 
 const defaultProps = {
   paths: [],
-  size: 16,
+  size: 28,
   color: styles.path.fill
 };
 

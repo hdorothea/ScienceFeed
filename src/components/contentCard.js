@@ -12,29 +12,37 @@ const styles = {
     alignItems: 'center'
   },
   headerText: {
-    fontSize: '2em',
-    fontWeight: 'bold'
+    fontSize: '1.5em',
+    fontWeight: 'bold',
+    marginBottom: '0.5rem',
+    fontFamily: 'Times New Roman, Times, serif'
   },
   img: {
     maxWidth: '90%'
   },
-  mainText: {}
+  mainText: {
+    lineHeight: '1.5em',
+    marginBottom: '0.5rem',
+    fontFamily: 'Roboto, sans-serif'
+  }
 };
 
 const propTypes = {
   headerText: PropTypes.string,
   imgUrl: PropTypes.string,
-  mainText: PropTypes.string
+  mainText: PropTypes.string,
+  style: PropTypes.object
 };
 
 const defaultProps = {
   headerText: null,
   imgUrl: null,
-  mainText: null
+  mainText: null,
+  style: {}
 };
 
-const ContentCard = ({ headerText, imgUrl, mainText }) => (
-  <Card>
+const ContentCard = ({ headerText, imgUrl, mainText, style: overwriteStyles }) => (
+  <Card style={overwriteStyles}>
     <div style={styles.contentContainer}>
       {headerText ? <div style={styles.headerText}> {headerText} </div> : null}
       {mainText ? <div style={styles.mainText}> {mainText}</div> : null}

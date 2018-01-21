@@ -5,14 +5,14 @@ import Radium from 'radium';
 const styles = {
   card: {
     backgroundColor: '#FFFF',
-    boxShadow: 'rgba(0, 0, 0, 0.13) 2px 2px 0px 0px',
-    width: '90%',
+    boxShadow: 'rgba(177, 80, 80, 0.2) 0px 2px 4px 0px',
     padding: '0.5em',
     marginBottom: '1em',
     display: 'flex',
     flexDirection: 'colum',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    fontFamily: 'Roboto, sans-serif'
   }
 };
 
@@ -24,7 +24,9 @@ const defaultProps = {
   children: null
 };
 
-const Card = ({ children }) => <div style={styles.card}> {children} </div>;
+const Card = ({ children, style: overwriteStyles }) => (
+  <div style={{ ...styles.card, ...overwriteStyles }}> {children} </div>
+);
 
 Card.propTypes = propTypes;
 

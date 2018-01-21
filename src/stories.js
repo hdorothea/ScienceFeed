@@ -39,8 +39,7 @@ storiesOf('ArticleFeed', module).add('renders', () => {
     {
       title: 'Another Crazy big lobster was found',
       abstract:
-        'Another crazy big lobster was found sunday afternoon in the sierra nevade blalllldl',
-      headerImg: 'https://pbs.twimg.com/media/DTTtR3UU8AEaoIR.jpg:large'
+        'Another crazy big lobster was found sunday afternoon in the sierra nevade blalllldl',      headerImg: 'https://static01.nyt.com/images/2017/12/27/science/00CODEX1/00CODEX1-mediumThreeByTwo440.jpg'
     }
   ];
   return <ArticleFeed style={{ width: '200px' }} articles={articles} />;

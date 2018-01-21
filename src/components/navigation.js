@@ -9,13 +9,14 @@ const styles = {
   navigation: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
+    padding: '1em'
   }
 };
 
 const propTypes = {
   options: PropTypes.array,
-  style: PropTypes.object,
+  style: PropTypes.object
 };
 
 const defaultProps = {
@@ -26,9 +27,10 @@ const defaultProps = {
 export function Navigation({ options, style: overwriteStyles }) {
   return (
     <div style={{ ...styles.navigation, ...overwriteStyles }}>
-      {options.map(({ path, iconPath, name }) => (
-        path ? <IconLink key={name} path={path} iconPath={iconPath} /> : <Icon paths={iconPath} />
-      ))}
+      {options.map(
+        ({ path, iconPath, name }) =>
+          (path ? <IconLink key={name} path={path} iconPath={iconPath} /> : <Icon paths={iconPath} />)
+      )}
     </div>
   );
 }

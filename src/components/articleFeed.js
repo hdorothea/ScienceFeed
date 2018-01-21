@@ -7,7 +7,12 @@ import ContentCard from './contentCard';
 const styles = {
   articleFeed: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  item: {
+    marginBottom: '1.2rem'
   }
 };
 
@@ -23,7 +28,13 @@ const defaultProps = {
 const ArticleFeed = ({ articles, style: overwriteStyles }) => (
   <div style={{ ...styles.articleFeed, ...overwriteStyles }}>
     {articles.map(({ title, abstract, img, id }) => (
-      <ContentCard key={id} imgUrl={img.url} mainText={abstract} headerText={title} />
+      <ContentCard
+        style={styles.item}
+        key={id}
+        imgUrl={img.url}
+        mainText={abstract}
+        headerText={title}
+      />
     ))}
   </div>
 );
