@@ -17,14 +17,20 @@ const styles = {
     height: '2rem',
     borderRight: 0,
     border: '1px solid gainsboro',
-    flexGrow: 1
+    flexGrow: 1,
+    ':focus': {
+      outline: 'none'
+    },
   },
   submitButton: {
     backgroundColor: 'white',
     paddingLeft: '1em',
     paddingRight: '1em',
     border: '1px solid #ccc',
-    boxShadow: 'rgb(238, 238, 238) 0px 1px 2px 0px inset'
+    boxShadow: 'rgb(238, 238, 238) 0px 1px 2px 0px inset',
+    ':focus': {
+      outline: 'none'
+    },
   },
   queryInput: {
     display: 'flex',
@@ -68,7 +74,7 @@ class Class extends Component {
           value={this.state.value}
           onChange={this.handleChange}
         />
-        <button style={styles.submitButton} type="submit">
+        <button key="but" style={styles.submitButton} type="submit">
           {' '}
           <Icon paths={search} size={10} />
         </button>
