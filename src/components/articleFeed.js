@@ -13,6 +13,10 @@ const styles = {
   },
   item: {
     marginBottom: '1.2rem'
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'rgb(0, 0, 0)'
   }
 };
 
@@ -27,14 +31,16 @@ const defaultProps = {
 
 const ArticleFeed = ({ articles, style: overwriteStyles }) => (
   <div style={{ ...styles.articleFeed, ...overwriteStyles }}>
-    {articles.map(({ title, abstract, img, id }) => (
-      <ContentCard
-        style={styles.item}
-        key={id}
-        imgUrl={img.url}
-        mainText={abstract}
-        headerText={title}
-      />
+    {articles.map(({ title, abstract, img, id, url }) => (
+      <a style={styles.link} href={url}>
+        <ContentCard
+          style={styles.item}
+          key={id}
+          imgUrl={img.url}
+          mainText={abstract}
+          headerText={title}
+        />
+      </a>
     ))}
   </div>
 );
