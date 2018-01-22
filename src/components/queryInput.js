@@ -15,7 +15,6 @@ const styles = {
     paddingLeft: '0.5em',
     borderRadius: '3px',
     height: '2rem',
-    borderRight: 0,
     border: '1px solid gainsboro',
     flexGrow: 1,
     ':focus': {
